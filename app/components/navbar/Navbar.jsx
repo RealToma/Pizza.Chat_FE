@@ -4,23 +4,32 @@ import logo from "./../../../public/assets/images/logo.svg";
 import burgerButton from "./../../../public/assets/images/burger_button.svg";
 import crossButton from "./../../../public/assets/images/cross_button.svg";
 import NavButtons from "./NavButtons";
-
+import Link from "next/link";
+import { useRouter } from 'next/navigation'
 import { useState } from "react";
 
 export default function Navbar() {
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const router = useRouter();
+  var handleNavClick = function (url) {
+    setShowMobileNav(false);
+    router.push(url);
+  }
 
   return (
-    <nav className="w-full shadow-custom bg-primary h-[6.5rem] lg:h-[9rem] xl:h-[11.25rem]">
+    <nav className="w-full shadow-custom bg-primary h-[5rem] lg:h-[8rem] xl:h-[9rem]">
       <div className="container flex items-center justify-between h-full ">
-        <Image
-          src={logo}
-          className="mr-9 sm:mr-0 h-[49px] w-[49px] md:h-[75px] md:w-[75px]  lg:h-[99px] lg:w-[99px]"
-          alt="logo"
-        />
+        {/* go to / route on logo click */}
+        <Link href="/">
+          <Image
+            src={logo}
+            className="mr-2 lg:mr-4 h-[49px] w-[49px] md:h-[75px] md:w-[75px]  lg:h-[99px] lg:w-[99px]"
+            alt="logo"
+          />
+        </Link>
         {/* buttons */}
         <div className=" hidden lg:block grow">
-          <NavButtons />
+          <NavButtons handleNavClick={handleNavClick} />
         </div>
 
         {/* burger button  */}
@@ -42,7 +51,7 @@ export default function Navbar() {
 
         {/* mobile nav buttons */}
         {showMobileNav && (
-          <div className="fixed block lg:hidden  top-0 right-0 left-0">
+          <div className="fixed block lg:hidden z-40  top-0 right-0 left-0">
             <div className="bg-primary flex flex-col p-[25px] w-full justify-center">
               <div className="logo_and_crossw-full flex items-center justify-between">
                 <Image src={logo} className="h-[44px] w-[44px] " alt="logo" />
@@ -62,7 +71,7 @@ export default function Navbar() {
 
               {/* nav buttons */}
               <div className="mt-9">
-                <NavButtons />
+                <NavButtons  handleNavClick={handleNavClick}/>
               </div>
             </div>
           </div>

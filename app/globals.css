@@ -1,6 +1,35 @@
 @tailwind base;
+:root {
+  --primary: white;
+  --secondary: rgb(95,171,56)  ;
+}
+
+/* Firefox */
+* {
+  /* scrollbar-width: auto; */
+  scrollbar-width: 25px;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 18px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
+  border-radius: 18px;
+  border: 3px solid var(--primary);
+}
+
 @tailwind components;
 @tailwind utilities;
+
 
 
 @layer utilities {
@@ -19,10 +48,7 @@
 }
 
 @layer components {
-  
   .container {
     @apply mx-auto max-w-[92.5rem] px-7 xl:px-0;
   }
-  
 }
-
